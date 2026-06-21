@@ -1,13 +1,19 @@
-bits 16
-org 0x7c00
+bits 32
 
-mov ah, 0x0e
-mov al, 'H'
-int 0x10
-mov al, 'i'
-int 0x10
+section .multiboot
+align 4
+    dd 0x1BADB002
+    dd 0
+    dd -(0x1BADB002)
 
-jmp $
+section .text
+global _start
+extern kernel_main
 
-times 510 - ($ - $$) db 0
-dw 0xaa55
+_start:
+    call kernel_main
+
+.hang:
+    cli
+    hlt
+    jmp .hang
