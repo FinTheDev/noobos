@@ -1,10 +1,19 @@
 bits 32
 
-section .multiboot
-align 4
-    dd 0x1BADB002
+section .multiboot2
+align 8
+
+header_start:
+    dd 0xE85250D6
     dd 0
-    dd -(0x1BADB002)
+    dd header_end - header_start
+    dd -(0xE85250D6 + 0 + (header_end - header_start))
+
+    dw 0
+    dw 0
+    dd 8
+
+header_end:
 
 section .text
 global _start
@@ -15,5 +24,6 @@ _start:
 
 .hang:
     cli
+.loop:
     hlt
     jmp .hang
