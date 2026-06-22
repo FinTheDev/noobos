@@ -17,9 +17,13 @@ header_end:
 
 section .text
 global _start
+extern check_long_mode_support
+extern enable_long_mode
 extern kernel_main
 
 _start:
+    call check_long_mode_support
+    call enable_long_mode
     call kernel_main
 
 .hang:

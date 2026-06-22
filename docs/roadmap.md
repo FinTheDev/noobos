@@ -2,9 +2,9 @@
 
 ## Phase 1: Boot
 
-* [ ] Display text on screen
+* [x] Display text on screen
 * [ ] Enter long mode
-* [ ] Load kernel
+* [x] Load kernel
 
 ## Phase 2: Core Kernel
 
