@@ -1,7 +1,10 @@
+#include "idt.h"
 #include "terminal.h"
 #include "colors.h"
 
 void kernel_main(void) {
+    idt_init();
+
     terminal_clear();
     terminal_write("NoobOS", light_red);
     terminal_write(" Kernel ", white);
@@ -11,7 +14,7 @@ void kernel_main(void) {
     terminal_write("OK", light_green);
     terminal_write("] ", dark_grey);
     terminal_write("Boot successful\n", white);
-
+    
     while (1) {
         __asm__ volatile("hlt");
     }
