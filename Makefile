@@ -12,6 +12,8 @@ C_OBJECTS = $(C_SOURCES:.c=.o)
 
 all: run
 
+rebuild: clean run
+
 boot.o: boot/boot.asm
 	nasm -f elf64 boot/boot.asm -o boot.o
 

@@ -9,7 +9,7 @@ void terminal_clear(void) {
     }
 }
 
-void terminal_putchar(char c) {
+void terminal_putchar(char c, unsigned char color) {
     if (c == '\n') {
         row++;
         column = 0;
@@ -17,7 +17,7 @@ void terminal_putchar(char c) {
         int index = (row * 80 + column) * 2;
         
         vga[index] = c;
-        vga[index + 1] = 0x0F;
+        vga[index + 1] = color;
         
         column++;
         if (column >= 80) {
@@ -31,8 +31,8 @@ void terminal_putchar(char c) {
     }
 }
 
-void terminal_write(const char* data) {
+void terminal_write(const char* data, unsigned char color) {
     for (int i = 0; data[i] != '\0'; i++) {
-        terminal_putchar(data[i]);
+        terminal_putchar(data[i], color);
     }
 }
