@@ -1,3 +1,5 @@
+bits 32
+
 section .text
 
 global check_long_mode_support
